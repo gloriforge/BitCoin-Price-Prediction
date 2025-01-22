@@ -1,9 +1,6 @@
 import requests
 import pandas as pd
-#from dotenv import load_dotenv
 import os
-
-#load_dotenv()
 
 def fetch_crypto_data(api_url, api_key):
     response = requests.get(
