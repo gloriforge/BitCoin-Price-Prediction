@@ -12,18 +12,18 @@ logging.basicConfig(
 
 class ModelEvalutionStrategy(ABC):
     @abstractmethod
-    def evalute_model(self, model, X_test, y_test, scalar_y) -> Dict[str, float]:
+    def evalute_model(self, model, X_test, y_test, scaler_y) -> Dict[str, float]:
         pass
 
 class RegressionModelEvaluationStrategy(ModelEvalutionStrategy):
-    def evalute_model(self, model, X_test, y_test, scalar_y):
+    def evalute_model(self, model, X_test, y_test, scaler_y):
         y_pred = model.predict(X_test)
 
         y_test_respahed = y_test.reshape(-1, 1)
         y_pred_respahed = y_pred.reshape(-1, 1)
 
-        y_test_inversed = scalar_y.inverse_transform(y_test_respahed)
-        y_pred_inversed = scalar_y.inverse_transform(y_pred_respahed)
+        y_test_inversed = scaler_y.inverse_transform(y_test_respahed)
+        y_pred_inversed = scaler_y.inverse_transform(y_pred_respahed)
 
         y_test_inversed = y_test_inversed.flatten()
         y_pred_inversed = y_pred_inversed.flatten()
@@ -51,5 +51,5 @@ class ModelEvaluator:
     def set_strategy(self, strategy: ModelEvalutionStrategy):
         self._strategy = strategy
 
-    def evaluate(self, model, X_test, y_test, scalar_y) -> Dict[str, float]:
-        return self._strategy.evalute_model(model, X_test, y_test, scalar_y)
+    def evaluate(self, model, X_test, y_test, scaler_y) -> Dict[str, float]:
+        return self._strategy.evalute_model(model, X_test, y_test, scaler_y)

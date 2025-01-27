@@ -27,11 +27,11 @@ def feature_engineering_step(
 
         context = FeatureEngineering(feature_strategy, scaling_strategy)
 
-        transformed_df, X_scaled, y_scaled, scalar_y = context.process_features(df, features, target)
+        transformed_df, X_scaled, y_scaled, scaler_y = context.process_features(df, features, target)
 
         logging.info(f"Feature engineering completed. Data shape: {transformed_df.shape}")
         
-        return transformed_df, X_scaled, y_scaled, scalar_y
+        return transformed_df, X_scaled, y_scaled, scaler_y
     except Exception as e:
         logging.info(f"Feature engineering failed with error: {e}")
         raise e
