@@ -45,7 +45,6 @@ class LSTMModelStrategy(ModelBuildingStrategy):
 
         mlflow.log_metric("final_loss", history.history['loss'][-1])
 
-        model.save("saved_models/lstm_model.keras")
         logging.info("LSTM model trained and saved.")
 
         return model
