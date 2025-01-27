@@ -17,7 +17,7 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     try:
         cleaned_data = preprocessor.clean_data()
 
-        logging.info(f"Data cleaning completed. Shape of cleaned data: ${cleaned_data.shape}")
+        logging.info(f"Data cleaning completed. Shape of cleaned data: {cleaned_data.shape}")
         return cleaned_data
     except Exception as e:
         logging.error(f"Data cleaning failed with error: {e}")
